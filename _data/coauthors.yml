@@ -32,3 +32,22 @@
 "planck":
   - firstname: ["Max"]
     url: https://en.wikipedia.org/wiki/Max_Planck
+
+lo prete:
+  - firstname: ["Chiara"]
+    url: "https://sites.psu.edu/chiaraloprete/"
+rong:
+  - firstname: ["Rong"]
+    url: "https://www.umass.edu/social-sciences/about/directory/rong-rong"
+kwasnica:
+  - firstname: ["Anthony", "Tony"]
+    url: "https://sites.google.com/view/tony-kwasnica/home"
+unel:
+  - firstname: ["Burçin", "Burcin"]
+    url: "https://policyintegrity.org/about/bio/burcin-unel"
+riyanto:
+  - firstname: ["Yohanes", "Yohanes E.", "Yohanes E", "Yohanes Eko", "Y."]
+    url: "https://www.expernomics.com/yer/"
+chen:
+  - firstname: ["Xiangyi"]
+    url: "https://ieeexplore.ieee.org/author/37089487254"

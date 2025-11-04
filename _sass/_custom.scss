@@ -1,0 +1,6 @@
+/* Vertically center the bio + photo on the about page at desktop widths */
+@media (min-width: 768px) {
+  .about .row {
+    align-items: center;
+  }
+}

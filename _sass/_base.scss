@@ -227,6 +227,75 @@ ul.task-list input[type="checkbox"] {
   }
 }
 
+.clearfix{
+  p{
+    font-size: 1.2rem;
+  }
+}
+
+/* Publication summary block */
+.pub-blurb {
+  /* spacing */
+  margin-top: 0.4rem;
+  margin-bottom: 0.35rem;
+  padding: 0.5rem 0.65rem;
+
+  /* subtle thematic background using the site's accent color */
+  /* color-mix works on modern browsers and respects light/dark via CSS vars */
+  background: color-mix(in srgb, var(--global-theme-color) 11%, transparent);
+  border-left: 3px solid var(--global-theme-color);
+  border-radius: 6px;
+
+  /* text color inherits but slightly softened */
+  color: var(--global-text-color);
+}
+
+.pub-blurb-label {
+  font-weight: 700;                /* bold "Summary" label */
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-right: 0.4rem;
+  color: var(--global-theme-color);
+}
+
+.pub-blurb-text {
+  font-style: italic;              /* your preference for emphasis */
+  opacity: 0.95;
+}
+
+/* DOI/primary link on publication title */
+.pub-title-link {
+  color: var(--global-text-color);
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+  transition: color 120ms ease, text-decoration-color 120ms ease;
+  text-decoration-color: color-mix(in srgb, var(--global-theme-color) 65%, transparent);
+}
+
+.pub-title-link:hover,
+.pub-title-link:focus {
+  color: var(--global-theme-color);
+  text-decoration-color: var(--global-theme-color);
+}
+
+
+/* Fallback for browsers without color-mix: keep a very subtle tint */
+@supports not (background: color-mix(in srgb, red 10%, transparent)) {
+  .pub-blurb {
+    background: rgba(0, 0, 0, 0.03);  /* light fallback; still looks fine in dark due to var text */
+  }
+}
+
+/* Optional: tighten spacing above the buttons row */
+.links { margin-top: 0.35rem; }
+
+
+.pub-authors a:hover {
+  text-decoration-style: solid;
+}
+
+
 .post-description {
   margin-bottom: 2rem;
   font-size: 0.875rem;
@@ -1423,3 +1492,4 @@ figure.cover {
     color: #23212d !important;
   }
 }
+
