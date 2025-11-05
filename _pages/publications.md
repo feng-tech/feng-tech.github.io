@@ -20,4 +20,4 @@ nav_order: 2
 
 #### Selected Working Papers
 - [Generative AI Adoption in Human Creative Tasks: Experimental Evidence](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5196748) (with Wenbo Zou) 
-- [Belief Formation and Polarization under Biased Information Sources](/assets/pdf/ZWL.pdf) (with Mengxin Wei and Xueying Lyu)
+- [Belief Formation and Polarization under Biased Information Sources](/assets/pdf/ZWL.pdf) (with Mengxing Wei and Xueying Lyu)
