@@ -18,5 +18,5 @@ nav_order: 2
 {% bibliography%}
 </div>
 
-#### Selected Working Papers
-- [Belief Formation and Polarization under Biased Information Sources](/assets/pdf/ZWL.pdf) (with Mengxing Wei and Xueying Lyu)
+<!-- #### Selected Working Papers
+- [Belief Formation and Polarization under Biased Information Sources](/assets/pdf/ZWL.pdf) (with Mengxing Wei and Xueying Lyu) -->
