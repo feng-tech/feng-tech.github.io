@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://feng-tech.github.io/sitemap.xml
+Sitemap: https://fengzhu.org/sitemap.xml
