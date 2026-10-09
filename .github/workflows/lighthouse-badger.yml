@@ -22,7 +22,8 @@ env:
 
 # TRIGGERS
 on:
-  page_build:
+  # Manual only: this optional theme-demo workflow requires a target URL,
+  # branch, and LIGHTHOUSE_BADGER_TOKEN before it can be used for this site.
   # schedule: # Check your schedule here => https://crontab.guru/
   #   - cron: '55 23 * * 0' # e.g. every Sunday at 23:55
   #
