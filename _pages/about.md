@@ -2,7 +2,7 @@
 layout: about
 title: Feng Zhu
 permalink: /
-subtitle: Assistant Professor, School of Economics, Nankai University
+subtitle: Associate Professor, School of Economics, Nankai University
 
 profile:
   align: right
@@ -14,9 +14,6 @@ profile:
 
 selected_papers: false # includes a list of papers marked as "selected={true}"
 social: false # includes social icons at the bottom of the page
-
-
-
 ---
 
 I received my Ph.D. in Economics from [Penn State University](https://econ.la.psu.edu/) and joined [Nankai University](https://economics.nankai.edu.cn/) in 2020. My research interests span economic theory, experimental and behavioral economics, with applications to contests, electricity markets and generative AI.
@@ -24,7 +21,6 @@ I received my Ph.D. in Economics from [Penn State University](https://econ.la.ps
 {%comment %} You can find my CV here.{%endcomment%}
 
 Email: zf#nankai.edu.cn
-
 
 {%comment%}
 Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.

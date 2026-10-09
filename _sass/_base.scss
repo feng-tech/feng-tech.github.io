@@ -227,8 +227,8 @@ ul.task-list input[type="checkbox"] {
   }
 }
 
-.clearfix{
-  p{
+.clearfix {
+  p {
     font-size: 1.2rem;
   }
 }
@@ -251,7 +251,7 @@ ul.task-list input[type="checkbox"] {
 }
 
 .pub-blurb-label {
-  font-weight: 700;                /* bold "Summary" label */
+  font-weight: 700; /* bold "Summary" label */
   text-transform: uppercase;
   letter-spacing: 0.02em;
   margin-right: 0.4rem;
@@ -259,7 +259,7 @@ ul.task-list input[type="checkbox"] {
 }
 
 .pub-blurb-text {
-  font-style: italic;              /* your preference for emphasis */
+  font-style: italic; /* your preference for emphasis */
   opacity: 0.95;
 }
 
@@ -269,7 +269,9 @@ ul.task-list input[type="checkbox"] {
   text-decoration: underline;
   text-decoration-thickness: 1.5px;
   text-underline-offset: 3px;
-  transition: color 120ms ease, text-decoration-color 120ms ease;
+  transition:
+    color 120ms ease,
+    text-decoration-color 120ms ease;
   text-decoration-color: color-mix(in srgb, var(--global-theme-color) 65%, transparent);
 }
 
@@ -279,22 +281,21 @@ ul.task-list input[type="checkbox"] {
   text-decoration-color: var(--global-theme-color);
 }
 
-
 /* Fallback for browsers without color-mix: keep a very subtle tint */
 @supports not (background: color-mix(in srgb, red 10%, transparent)) {
   .pub-blurb {
-    background: rgba(0, 0, 0, 0.03);  /* light fallback; still looks fine in dark due to var text */
+    background: rgba(0, 0, 0, 0.03); /* light fallback; still looks fine in dark due to var text */
   }
 }
 
 /* Optional: tighten spacing above the buttons row */
-.links { margin-top: 0.35rem; }
-
+.links {
+  margin-top: 0.35rem;
+}
 
 .pub-authors a:hover {
   text-decoration-style: solid;
 }
-
 
 .post-description {
   margin-bottom: 2rem;
@@ -1492,4 +1493,3 @@ figure.cover {
     color: #23212d !important;
   }
 }
-

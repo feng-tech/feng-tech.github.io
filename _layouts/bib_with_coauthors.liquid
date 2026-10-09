@@ -49,92 +49,69 @@
   <div id="{{ entry.key }}" class="{% if site.enable_publication_thumbnails %}col-sm-8{% else %}col-sm-10{% endif %}">
     <!-- Title -->
     <!-- Title (linked to DOI if present; else fall back to HTML/PDF/arXiv) -->
-<div class="title">
-  {% if entry.doi %}
-    <a class="pub-title-link" target="_blank" rel="noopener" href="https://doi.org/{{ entry.doi }}">{{ entry.title }}</a>
-  {% elsif entry.html %}
-    {% if entry.html contains '://' %}
-      <a class="pub-title-link" target="_blank" rel="noopener" href="{{ entry.html }}">{{ entry.title }}</a>
-    {% else %}
-      <a class="pub-title-link" target="_blank" rel="noopener" href="{{ entry.html | prepend: '/assets/html/' | relative_url }}">{{ entry.title }}</a>
-    {% endif %}
-  {% elsif entry.pdf %}
-    {% if entry.pdf contains '://' %}
-      <a class="pub-title-link" target="_blank" rel="noopener" href="{{ entry.pdf }}">{{ entry.title }}</a>
-    {% else %}
-      <a class="pub-title-link" target="_blank" rel="noopener" href="{{ entry.pdf | prepend: '/assets/pdf/' | relative_url }}">{{ entry.title }}</a>
-    {% endif %}
-  {% elsif entry.arxiv %}
-    <a class="pub-title-link" target="_blank" rel="noopener" href="https://arxiv.org/abs/{{ entry.arxiv }}">{{ entry.title }}</a>
-  {% else %}
-    {{ entry.title }}
-  {% endif %}
-</div>
-    
+    <div class="title">
+      {% if entry.doi %}
+        <a class="pub-title-link" target="_blank" rel="noopener" href="https://doi.org/{{ entry.doi }}">{{ entry.title }}</a>
+      {% elsif entry.html %}
+        {% if entry.html contains '://' %}
+          <a class="pub-title-link" target="_blank" rel="noopener" href="{{ entry.html }}">{{ entry.title }}</a>
+        {% else %}
+          <a class="pub-title-link" target="_blank" rel="noopener" href="{{ entry.html | prepend: '/assets/html/' | relative_url }}">
+            {{- entry.title -}}
+          </a>
+        {% endif %}
+      {% elsif entry.pdf %}
+        {% if entry.pdf contains '://' %}
+          <a class="pub-title-link" target="_blank" rel="noopener" href="{{ entry.pdf }}">{{ entry.title }}</a>
+        {% else %}
+          <a class="pub-title-link" target="_blank" rel="noopener" href="{{ entry.pdf | prepend: '/assets/pdf/' | relative_url }}">
+            {{- entry.title -}}
+          </a>
+        {% endif %}
+      {% elsif entry.arxiv %}
+        <a class="pub-title-link" target="_blank" rel="noopener" href="https://arxiv.org/abs/{{ entry.arxiv }}">{{ entry.title }}</a>
+      {% else %}
+        {{ entry.title }}
+      {% endif %}
+    </div>
 
-<!-- Author (custom "with ..." coauthor rendering + coauthor hyperlinks) -->
-<div class="author">
-  {%- comment -%} Normalize your name (allow variants) {%- endcomment -%}
-  {%- assign my_firsts = site.scholar.first_name | default: "" -%}
-  {%- assign my_lasts  = site.scholar.last_name  | default: "" -%}
-  {%- unless my_firsts %}{% assign my_firsts = "" %}{% endunless %}
-  {%- unless my_lasts  %}{% assign my_lasts  = "" %}{% endunless %}
+    <!-- Author (custom "with ..." coauthor rendering + coauthor hyperlinks) -->
+    <div class="author">
+      {%- comment -%} Normalize your name (allow variants) {%- endcomment -%}
+      {%- assign my_firsts = site.scholar.first_name | default: '' -%}
+      {%- assign my_lasts = site.scholar.last_name | default: '' -%}
+      {%- unless my_firsts %}{% assign my_firsts = '' %}{% endunless %}
+      {%- unless my_lasts %}{% assign my_lasts = '' %}{% endunless %}
 
-  {%- assign my_first_norms = "" -%}
-  {%- assign my_first_inits = "" -%}
-  {%- for fn in my_firsts -%}
-    {%- assign fn_norm = fn | to_s | strip | downcase | remove: "." -%}
-    {%- assign my_first_norms = my_first_norms | append: fn_norm | append: "||" -%}
-    {%- assign my_first_inits = my_first_inits | append: (fn_norm | slice: 0,1) | append: "||" -%}
-  {%- endfor -%}
-  {%- assign my_first_norms = my_first_norms | split: "||" | where_exp: "x", "x != ''" -%}
-  {%- assign my_first_inits = my_first_inits | split: "||" | where_exp: "x", "x != ''" -%}
+      {%- assign my_first_norms = '' -%}
+      {%- assign my_first_inits = '' -%}
+      {%- for fn in my_firsts -%}
+        {%- assign fn_norm = fn | to_s | strip | downcase | remove: '.' -%}
+        {%- assign my_first_norms = my_first_norms | append: fn_norm | append: '||' -%}
+        {%- assign my_first_inits = my_first_inits | append: (fn_norm | slice: 0,1) | append: "||" -%}
+      {%- endfor -%}
+      {%- assign my_first_norms = my_first_norms | split: '||' | where_exp: 'x', "x != ''" -%}
+      {%- assign my_first_inits = my_first_inits | split: '||' | where_exp: 'x', "x != ''" -%}
 
-  {%- assign my_last_norms = "" -%}
-  {%- for ln in my_lasts -%}
-    {%- assign ln_norm = ln | to_s | strip | downcase | remove_accents | regex_replace: '[*∗†‡§¶‖&^]', '' -%}
-    {%- assign my_last_norms = my_last_norms | append: ln_norm | append: "||" -%}
-  {%- endfor -%}
-  {%- assign my_last_norms = my_last_norms | split: "||" | where_exp: "x", "x != ''" -%}
+      {%- assign my_last_norms = '' -%}
+      {%- for ln in my_lasts -%}
+        {%- assign ln_norm = ln | to_s | strip | downcase | remove_accents | regex_replace: '[*∗†‡§¶‖&^]', '' -%}
+        {%- assign my_last_norms = my_last_norms | append: ln_norm | append: '||' -%}
+      {%- endfor -%}
+      {%- assign my_last_norms = my_last_norms | split: '||' | where_exp: 'x', "x != ''" -%}
 
-  {%- assign total_authors = entry.author_array | size -%}
+      {%- assign total_authors = entry.author_array | size -%}
 
-  {%- comment -%} First pass: count coauthors (exclude self) {%- endcomment -%}
-  {%- assign co_count = 0 -%}
-  {%- for a in entry.author_array -%}
-    {%- assign a_first = a.first | to_s | strip -%}
-    {%- assign a_last_raw = a.last  | to_s | strip -%}
-    {%- assign a_last_clean = a_last_raw | regex_replace: '[*∗†‡§¶‖&^]', '' -%}
-
-    {%- assign a_first_norm = a_first | downcase | remove: "." | strip -%}
-    {%- assign a_first_init = a_first_norm | slice: 0,1 -%}
-    {%- assign a_last_norm  = a_last_clean | downcase | remove_accents | strip -%}
-
-    {%- assign is_me = false -%}
-    {%- if my_last_norms contains a_last_norm -%}
-      {%- if my_first_norms contains a_first_norm or my_first_inits contains a_first_init -%}
-        {%- assign is_me = true -%}
-      {%- endif -%}
-    {%- endif -%}
-
-    {%- unless is_me -%}
-      {%- assign co_count = co_count | plus: 1 -%}
-    {%- endunless -%}
-  {%- endfor -%}
-
-  {%- comment -%} Second pass: render coauthors (with links) and punctuation {%- endcomment -%}
-  <span class="pub-authors">
-    {%- if total_authors > 1 and co_count > 0 -%}
-      with
-      {%- assign printed = 0 -%}
+      {%- comment -%} First pass: count coauthors (exclude self) {%- endcomment -%}
+      {%- assign co_count = 0 -%}
       {%- for a in entry.author_array -%}
         {%- assign a_first = a.first | to_s | strip -%}
-        {%- assign a_last_raw = a.last  | to_s | strip -%}
+        {%- assign a_last_raw = a.last | to_s | strip -%}
         {%- assign a_last_clean = a_last_raw | regex_replace: '[*∗†‡§¶‖&^]', '' -%}
 
-        {%- assign a_first_norm = a_first | downcase | remove: "." | strip -%}
-        {%- assign a_first_init = a_first_norm | slice: 0,1 -%}
-        {%- assign a_last_norm  = a_last_clean | downcase | remove_accents | strip -%}
+        {%- assign a_first_norm = a_first | downcase | remove: '.' | strip -%}
+        {%- assign a_first_init = a_first_norm | slice: 0, 1 -%}
+        {%- assign a_last_norm = a_last_clean | downcase | remove_accents | strip -%}
 
         {%- assign is_me = false -%}
         {%- if my_last_norms contains a_last_norm -%}
@@ -144,63 +121,93 @@
         {%- endif -%}
 
         {%- unless is_me -%}
-          {%- assign printed = printed | plus: 1 -%}
-
-          {%- comment -%} Lookup coauthor URL in _data/coauthors.yml {%- endcomment -%}
-          {%- assign coauthor_url = nil -%}
-          {%- assign clean_last = a_last_clean | downcase | remove_accents -%}
-          {% if site.data.coauthors[clean_last] %}
-            {% for co in site.data.coauthors[clean_last] %}
-              {% assign fn_list = co.firstname %}
-              {% if fn_list %}
-                {% assign matched = false %}
-                {% for v in fn_list %}
-                  {% assign v_norm = v | downcase | remove: "." | strip %}
-                  {% if v_norm == a_first_norm or v_norm == a_first_init %}
-                    {% assign matched = true %}
-                    {% break %}
-                  {% endif %}
-                {% endfor %}
-                {% if matched %}
-                  {% assign coauthor_url = co.url %}
-                  {% break %}
-                {% endif %}
-              {% endif %}
-            {% endfor %}
-          {% endif %}
-
-          {%- comment -%} punctuation/spaces {%- endcomment -%}
-          {%- if co_count == 1 -%}
-            {{ " " }}
-          {%- elsif co_count == 2 -%}
-            {%- if printed == 1 -%}{{ " " }}{%- else -%}{{ " and " }}{%- endif -%}
-          {%- else -%}
-            {%- if printed == 1 -%}{{ " " }}
-            {%- elsif printed < co_count -%}{{ ", " }}
-            {%- else -%}{{ ", and " }}
-            {%- endif -%}
-          {%- endif -%}
-
-          {%- comment -%} print name (linked if URL found) {%- endcomment -%}
-          {%- if coauthor_url -%}
-            <a href="{{ coauthor_url }}" target="_blank" rel="noopener">{{ a_first }} {{ a_last_clean }}</a>
-          {%- else -%}
-            {{ a_first }} {{ a_last_clean }}
-          {%- endif -%}
+          {%- assign co_count = co_count | plus: 1 -%}
         {%- endunless -%}
       {%- endfor -%}
-    {%- else -%}
-      {%- comment -%} Solo work: print "First Last" instead of "Last, First" {%- endcomment -%}
-      {%- for a in entry.author_array limit:1 -%}
-        {{ a.first | to_s | strip }} {{ a.last | to_s | strip | regex_replace: '[*∗†‡§¶‖&^]', '' }}
-      {%- endfor -%}
-    {%- endif -%}
-  </span>
-</div>
 
+      {%- comment -%} Second pass: render coauthors (with links) and punctuation {%- endcomment -%}
+      <span class="pub-authors">
+        {%- if total_authors > 1 and co_count > 0 -%}
+          with
+          {%- assign printed = 0 -%}
+          {%- for a in entry.author_array -%}
+            {%- assign a_first = a.first | to_s | strip -%}
+            {%- assign a_last_raw = a.last | to_s | strip -%}
+            {%- assign a_last_clean = a_last_raw | regex_replace: '[*∗†‡§¶‖&^]', '' -%}
 
+            {%- assign a_first_norm = a_first | downcase | remove: '.' | strip -%}
+            {%- assign a_first_init = a_first_norm | slice: 0, 1 -%}
+            {%- assign a_last_norm = a_last_clean | downcase | remove_accents | strip -%}
 
+            {%- assign is_me = false -%}
+            {%- if my_last_norms contains a_last_norm -%}
+              {%- if my_first_norms contains a_first_norm or my_first_inits contains a_first_init -%}
+                {%- assign is_me = true -%}
+              {%- endif -%}
+            {%- endif -%}
 
+            {%- unless is_me -%}
+              {%- assign printed = printed | plus: 1 -%}
+
+              {%- comment -%} Lookup coauthor URL in _data/coauthors.yml {%- endcomment -%}
+              {%- assign coauthor_url = null -%}
+              {%- assign clean_last = a_last_clean | downcase | remove_accents -%}
+              {% if site.data.coauthors[clean_last] %}
+                {% for co in site.data.coauthors[clean_last] %}
+                  {% assign fn_list = co.firstname %}
+                  {% if fn_list %}
+                    {% assign matched = false %}
+                    {% for v in fn_list %}
+                      {% assign v_norm = v | downcase | remove: '.' | strip %}
+                      {% if v_norm == a_first_norm or v_norm == a_first_init %}
+                        {% assign matched = true %}
+                        {% break %}
+                      {% endif %}
+                    {% endfor %}
+                    {% if matched %}
+                      {% assign coauthor_url = co.url %}
+                      {% break %}
+                    {% endif %}
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+
+              {%- comment -%} punctuation/spaces {%- endcomment -%}
+              {%- if co_count == 1 -%}
+                {{ ' ' }}
+              {%- elsif co_count == 2 -%}
+                {%- if printed == 1 -%}{{ ' ' }}{%- else -%}{{ ' and ' }}{%- endif -%}
+              {%- else -%}
+                {%- if printed == 1 -%}
+                  {{ ' ' }}
+                {%- elsif printed < co_count -%}
+                  {{ ', ' }}
+                {%- else -%}
+                  {{ ', and ' }}
+                {%- endif -%}
+              {%- endif -%}
+
+              {%- comment -%} print name (linked if URL found) {%- endcomment -%}
+              {%- if coauthor_url -%}
+                <a href="{{ coauthor_url }}" target="_blank" rel="noopener">
+                  {{- a_first }}
+                  {{ a_last_clean -}}
+                </a>
+              {%- else -%}
+                {{ a_first }}
+                {{ a_last_clean }}
+              {%- endif -%}
+            {%- endunless -%}
+          {%- endfor -%}
+        {%- else -%}
+          {%- comment -%} Solo work: print "First Last" instead of "Last, First" {%- endcomment -%}
+          {%- for a in entry.author_array limit: 1 -%}
+            {{ a.first | to_s | strip }}
+            {{ a.last | to_s | strip | regex_replace: '[*∗†‡§¶‖&^]', '' }}
+          {%- endfor -%}
+        {%- endif -%}
+      </span>
+    </div>
 
     <!-- Journal/Book title and date -->
     {% assign proceedings = 'inproceedings,incollection' | split: ',' %}
@@ -240,15 +247,16 @@
     </div>
 
     <!-- Custom inserted annotations -->
-    <!-- {% if entry.annotation %}
-    <div class="pub-blurb" role="note" aria-label="Paper summary">
-    <span class="pub-blurb-label">Summary</span>
-    <span class="pub-blurb-text">
-      {{ entry.annotation | markdownify | remove: '<p>' | remove: '</p>' }}
-    </span>
-    </div>
-    {% endif %} -->
-
+    <!--
+      {% if entry.annotation %}
+      <div class="pub-blurb" role="note" aria-label="Paper summary">
+      <span class="pub-blurb-label">Summary</span>
+      <span class="pub-blurb-text">
+        {{ entry.annotation | markdownify | remove: '<p>' | remove: '</p>' }}
+      </span>
+      </div>
+      {% endif %}
+    -->
 
     <!-- Links/Buttons -->
     <div class="links">
@@ -260,9 +268,11 @@
       {% if entry.abstract %}
         <a class="abstract btn btn-sm z-depth-0" role="button">Abstract</a>
       {% endif %}
-      <!-- {% if entry.doi %}
-        <a href="https://doi.org/{{ entry.doi }}" class="btn btn-sm z-depth-0" role="button">DOI</a>
-      {% endif %} -->
+      <!--
+        {% if entry.doi %}
+          <a href="https://doi.org/{{ entry.doi }}" class="btn btn-sm z-depth-0" role="button">DOI</a>
+        {% endif %}
+      -->
       {% if entry.arxiv %}
         <a href="http://arxiv.org/abs/{{ entry.arxiv }}" class="btn btn-sm z-depth-0" role="button">arXiv</a>
       {% endif %}

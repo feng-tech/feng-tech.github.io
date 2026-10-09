@@ -11,7 +11,6 @@ nav_order: 2
 
 <!-- Bibsearch Feature -->
 
-
 #### Publications
 
 <div class="publications">

@@ -9,8 +9,8 @@ last_name: Zhu
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   Feng Zhu (朱峰) is an economist at Nankai University. His research spans economic theory, experimental and behavioral economics, with applications to contests, electricity markets and generative AI.
 footer_text: >
-  © 2025 Feng Zhu. Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
-keywords: 
+  Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
+keywords:
   - Feng Zhu
   - 朱峰
   - Nankai University
@@ -20,8 +20,8 @@ keywords:
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
 icon: favicon.ico # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 
-url: https://feng-tech.github.io # the base hostname & protocol for your site
-baseurl:  # the subpath of your site, e.g. /blog/. Leave blank for root
+url: https://fengzhu.org # the base hostname & protocol for your site
+baseurl: # the subpath of your site, e.g. /blog/. Leave blank for root
 last_updated: false # set to true if you want to display last updated in the footer
 impressum_path: # set to path to include impressum link in the footer, use the same path as permalink in a page, helps to conform with EU GDPR
 back_to_top: true # set to false to disable the back to top button
@@ -84,8 +84,6 @@ openpanel_analytics: # your Openpanel analytics client ID (format: XXXXXXXX-XXXX
 google_site_verification: # your google-site-verification ID (Google Search Console)
 bing_site_verification: # out your bing-site-verification ID (Bing Webmaster)
 
-
-
 # -----------------------------------------------------------------------------
 # Newsletter
 # -----------------------------------------------------------------------------
@@ -94,8 +92,6 @@ newsletter:
   enabled: false
   endpoint: # your loops endpoint (e.g., https://app.loops.so/api/newsletter-form/YOUR-ENDPOINT)
   # https://loops.so/docs/forms/custom-form
-
-
 
 # -----------------------------------------------------------------------------
 # Jekyll settings
@@ -136,7 +132,7 @@ exclude:
   - README.md
   - readme_preview/
   - vendor
-# customized exclude below
+  # customized exclude below
   - _posts/
   - _pages/blog.md
   - projects/?_project.md
@@ -183,6 +179,7 @@ sass:
 
 jekyll-minifier:
   compress_javascript: false # set to false since we are using terser as the js minifier
+  compress_css: false # Sass already compresses CSS; avoid the slow second compression pass
   exclude: ["robots.txt", "assets/js/search/*.js"]
 
 # -----------------------------------------------------------------------------
